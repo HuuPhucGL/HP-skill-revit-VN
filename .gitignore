@@ -1,0 +1,15 @@
+# Khong dua ban ve, mo hinh, family, template, CTB, Excel du an len GitHub
+*.dwg
+*.dwt
+*.rvt
+*.rfa
+*.rte
+*.rft
+*.ctb
+*.stb
+*.xlsx
+*.xls
+*.pdf
+*.json.bak*
+__pycache__/
+_backup/

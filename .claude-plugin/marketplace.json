@@ -1,0 +1,12 @@
+{
+  "name": "hp-skill-revit-vn",
+  "owner": { "name": "HuuPhucGL" },
+  "plugins": [
+    {
+      "name": "hp-skill-revit-vn",
+      "source": "./",
+      "description": "Bộ skill Revit 2024 tiếng Việt: dựng mô hình, triển khai bản vẽ, bốc khối lượng, kiểm tra mô hình qua MCP.",
+      "version": "1.0.0"
+    }
+  ]
+}
