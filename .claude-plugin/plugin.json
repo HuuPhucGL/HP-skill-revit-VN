@@ -1,6 +1,6 @@
 {
   "name": "hp-skill-revit-vn",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Bộ skill Revit 2024 tiếng Việt cho kỹ sư kiến trúc: dựng mô hình, triển khai bản vẽ A3 1/50, bốc khối lượng phần thô ra Excel, kiểm tra mô hình — chạy qua MCP mcp-servers-for-revit.",
   "author": { "name": "HuuPhucGL" },
   "homepage": "https://github.com/HuuPhucGL/HP-skill-revit-VN",

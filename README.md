@@ -13,9 +13,18 @@ Protocol). Bộ skill viết cho kỹ sư kiến trúc nhà phố / nhà ở t�
 |---|---|---|
 | `hp-revit-quy-uoc` | Trước mọi thao tác Revit | Kiểm tra kết nối, khảo sát dự án, đơn vị, quyền hạn, đặt tên, sao lưu, cách viết mã C# |
 | `hp-revit-dung-mo-hinh` | "Dựng mô hình", "chuyển CAD sang Revit" | Trục, Level `TẦNG n`, tường `Tường gạch 110/220`, sàn, cửa, phòng; đầu vào là CAD, lời nói, ảnh hoặc file có sẵn |
+| `hp-revit-bo-sung-chi-tiet` | "Bổ sung chi tiết", "làm cầu thang / mái / cột dầm" | **Mới.** Cột, dầm, cầu thang, mái, lan can, trần, ghi chú, nét chi tiết, bảng thống kê cửa / phòng; có bảng hỏi thông số, không tự đoán |
 | `hp-revit-trien-khai-ban-ve` | "Tạo sheet", "ghi kích thước", "tag phòng" | View 1/50, sheet A3 KT-01…, khung tên tạm, đặt view, dim, tag, thay khung tên hàng loạt |
 | `hp-revit-boc-khoi-luong` | "Bốc khối lượng", "xuất Excel" | Tường xây (trừ ô cửa có diễn giải), bê tông + cốp pha, tô trát, lát nền, cửa, diện tích phòng |
 | `hp-revit-kiem-tra-mo-hinh` | "Kiểm tra mô hình", "rà lỗi" | Cảnh báo Revit, tường trùng, phòng hở, sai quy ước tên, cửa thiếu kích thước, view sai tỷ lệ |
+| `hp-revit-xuat-ho-so-pdf` | "Xuất PDF", "ra hồ sơ" | **Mới.** Rà đủ sheet KT-xx A3 1/50, xuất PDF vào `03-PDF xuat ban`, không ghi đè, kiểm lại file đã ra. Cần MCP `hp-revit` (xem bên dưới) |
+
+**Quy trình trọn gói:** `dung-mo-hinh` → `bo-sung-chi-tiet` → `kiem-tra-mo-hinh` → `trien-khai-ban-ve` → `xuat-ho-so-pdf` (và `boc-khoi-luong` khi cần dự toán).
+
+### Xuất PDF cần thêm MCP `hp-revit`
+Bộ `mcp-servers-for-revit` ở dưới không có lệnh xuất PDF và tạo sheet. Cài thêm
+[HP-MCP-Revit-vn](https://github.com/HuuPhucGL/HP-MCP-Revit-vn) (MCP tên `hp-revit`, cổng 9877, cài song song được).
+Xuất PDF qua API chỉ từ Revit 2022 trở lên; mới kiểm chứng trên Revit 2024.
 
 Quy tắc chung của bộ skill:
 - Thông số kỹ thuật bị thiếu (chiều dày tường, cao tầng, kích thước cửa, định mức) thì **hỏi lại**, không tự đoán.
@@ -78,7 +87,8 @@ HP-skill-revit-VN/
 
 ## Giới hạn hiện tại
 - Các đoạn mã C# đã biên dịch được với RevitAPI 2024, nhưng nên chạy thử trên bản sao file trước khi dùng cho dự án thật.
-- Plugin MCP chưa có lệnh xuất PDF/DWG, View Template, lưu file. Những việc này làm tay trong Revit.
+- Plugin `mcp-servers-for-revit` chưa có lệnh xuất PDF/DWG, View Template, lưu file. PDF dùng MCP `hp-revit` (ở trên); DWG, View Template, lưu file làm tay trong Revit.
+- Các đoạn mã mẫu trong `hp-revit-bo-sung-chi-tiet` (cầu thang, mái, lan can, bảng thống kê...) **chưa chạy thử**, cần chạy trên bản sao file.
 - Cách tính cốp pha và tô trát là **đề xuất**. Phải duyệt theo định mức của từng dự án.
 - Không lấy được khối lượng thép từ mô hình kiến trúc.
 
